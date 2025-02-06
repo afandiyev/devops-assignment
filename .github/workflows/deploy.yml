@@ -21,8 +21,13 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Apply Terraform Deployment
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.3.0
+
+      - name: Validate Terraform Configuration
         run: |
           cd terraform
           terraform init
-          terraform apply -auto-approve
+          terraform validate
