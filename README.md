@@ -36,3 +36,13 @@ git push origin master
 
 Go to GitHub → Actions Tab.
 Monitor the workflow run.
+
+
+# Rollback steps
+Rollback to Previous Deployment
+
+kubectl rollout undo deployment hello-world
+
+kubectl rollout status deployment hello-world
+
+

@@ -21,6 +21,11 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Security Scan with Trivy
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
+          trivy image --exit-code 0 --severity HIGH,CRITICAL mahiraf/hello-world-app:latest    
+
       - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
         with:
